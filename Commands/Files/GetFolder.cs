@@ -43,12 +43,15 @@ namespace SharePointPnP.PowerShell.Commands.Files
             DefaultRetrievalExpressions = new Expression<Func<Folder, object>>[] { f => f.ServerRelativeUrl, f => f.Name, f => f.ItemCount };
 #endif
             var webServerRelativeUrl = SelectedWeb.EnsureProperty(w => w.ServerRelativeUrl);
-            if (!Url.ToLower().StartsWith(webServerRelativeUrl))
+            if (!Url.StartsWith(webServerRelativeUrl, StringComparison.OrdinalIgnoreCase))
             {
                 Url = UrlUtility.Combine(webServerRelativeUrl, Url);
             }
+#if ONPREMISES
             var folder = SelectedWeb.GetFolderByServerRelativeUrl(Url);
-
+#else
+            var folder = SelectedWeb.GetFolderByServerRelativePath(ResourcePath.FromDecodedUrl(Url));
+#endif
             folder.EnsureProperties(RetrievalExpressions);
 
             WriteObject(folder);

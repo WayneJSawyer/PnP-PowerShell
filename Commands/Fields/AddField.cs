@@ -27,7 +27,7 @@ Remarks = @"This will add a field of type Multiple Choice to the list ""Demo Lis
     [CmdletAdditionalParameter(ParameterType = typeof(string[]), ParameterName = "Choices", HelpMessage = "Specify choices, only valid if the field type is Choice", ParameterSetName = ParameterSet_ADDFIELDTOLIST)]
     [CmdletAdditionalParameter(ParameterType = typeof(string[]), ParameterName = "Choices", HelpMessage = "Specify choices, only valid if the field type is Choice", ParameterSetName = ParameterSet_ADDFIELDTOWEB)]
     [CmdletAdditionalParameter(ParameterType = typeof(string), ParameterName = "Formula", HelpMessage = "Specify the formula. Only available if the field type is Calculated", ParameterSetName = ParameterSet_ADDFIELDTOLIST)]
-    [CmdletAdditionalParameter(ParameterType = typeof(string), ParameterName = "Formula", HelpMessage = "Specify the formula. Only avialable if the field type is Calculated", ParameterSetName = ParameterSet_ADDFIELDTOWEB)]
+    [CmdletAdditionalParameter(ParameterType = typeof(string), ParameterName = "Formula", HelpMessage = "Specify the formula. Only available if the field type is Calculated", ParameterSetName = ParameterSet_ADDFIELDTOWEB)]
     public class AddField : PnPWebCmdlet, IDynamicParameters
     {
         const string ParameterSet_ADDFIELDTOLIST = "Add field to list";
@@ -50,8 +50,8 @@ Remarks = @"This will add a field of type Multiple Choice to the list ""Demo Lis
         [Parameter(Mandatory = true, ParameterSetName = ParameterSet_ADDFIELDTOWEB, HelpMessage = "The internal name of the field")]
         public string InternalName;
 
-        [Parameter(Mandatory = true, ParameterSetName = ParameterSet_ADDFIELDTOLIST, HelpMessage = "The type of the field like Choice, Note, MultiChoice")]
-        [Parameter(Mandatory = true, ParameterSetName = ParameterSet_ADDFIELDTOWEB, HelpMessage = "The type of the field like Choice, Note, MultiChoice")]
+        [Parameter(Mandatory = true, ParameterSetName = ParameterSet_ADDFIELDTOLIST, HelpMessage = "The type of the field like Choice, Note, MultiChoice. For a complete list of field types visit https://docs.microsoft.com/dotnet/api/microsoft.sharepoint.client.fieldtype")]
+        [Parameter(Mandatory = true, ParameterSetName = ParameterSet_ADDFIELDTOWEB, HelpMessage = "The type of the field like Choice, Note, MultiChoice. For a complete list of field types visit https://docs.microsoft.com/dotnet/api/microsoft.sharepoint.client.fieldtype")]
         public FieldType Type;
 
         [Parameter(Mandatory = false, ParameterSetName = ParameterSet_ADDFIELDTOLIST, HelpMessage = "The ID of the field, must be unique")]
